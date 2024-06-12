@@ -10,4 +10,4 @@ typedef struct s_token
 	char		**arg_array;
 	int			token;
 	void		*next;
-}
+}	t_token;
