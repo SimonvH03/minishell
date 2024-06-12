@@ -1,0 +1,13 @@
+typedef struct s_argument
+{
+	char	*content;
+	void	*next;
+}	t_argument;
+
+typedef struct s_token
+{
+	t_argument	**arg_head; // can be used as single pointer, head stored in token node only
+	char		**arg_array;
+	int			token;
+	void		*next;
+}
