@@ -3,98 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 13:10:56 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:39:04 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/19 17:38:33 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	counter(int n)
+static void	ft_putnbr_ptr(char *ptr, int n)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 2;
-	if (n == -2147483648)
-		return (12);
+	len = ft_intlen(n);
+	if (n == INT_MIN)
+	{
+		ft_strlcpy(ptr, "-2147483648", 13);
+		return ;
+	}
 	if (n < 0)
 	{
-		n = n * -1;
-		i++;
+		*ptr = '-';
+		n = -n;
 	}
-	while (n > 9)
+	else
+		*ptr = '0';
+	ptr[len] = '\0';
+	while (n != 0)
 	{
-		n = n / 10;
-		i++;
+		ptr[--len] = (n % 10) + 48;
+		n /= 10;
 	}
-	return (i);
-}
-
-static void	mystrrev(char *str)
-{
-	char	temp;
-	int		b;
-	int		e;
-
-	b = 0;
-	e = ft_strlen(str) - 1;
-	if (str[b] == '-')
-		b++;
-	while (b < e)
-	{
-		temp = str[b];
-		str[b] = str[e];
-		str[e] = temp;
-		b++;
-		e--;
-	}
-	return ;
-}
-
-static int	min(char *asc, size_t *i)
-{
-	int	r;
-
-	r = 214748364;
-	asc[*i] = '-';
-	*i += 1;
-	asc[*i] = '8';
-	*i += 1;
-	return (r);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*ascii;
-	size_t	i;
+	char	*ptr;
+	size_t	nlen;
 
-	i = 0;
-	ascii = (char *) malloc(counter(n) * sizeof(char));
-	if (!(ascii))
+	nlen = ft_intlen(n);
+	ptr = (char *)malloc((nlen + 1) * sizeof(char));
+	if (ptr == NULL)
 		return (NULL);
-	if (n == -2147483648)
-		n = min(ascii, &i);
-	if (n < 0)
-	{
-		ascii[i++] = '-';
-		n = n * -1;
-	}
-	while (n > 9)
-	{
-		ascii[i++] = n % 10 + 48;
-		n = n / 10;
-	}
-	ascii[i++] = n + 48;
-	ascii[i] = '\0';
-	mystrrev(ascii);
-	return (ascii);
+	ft_putnbr_ptr(ptr, n);
+	return (ptr);
 }
-
-// int	main(void)
-// {
-// 	int i = 4242;
-// 	printf("out: %s\n", ft_itoa(i));
-// 	return (0);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:03:47 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:39:30 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/11 13:16:40 by simon             #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	while (n > 0)
-	{
-		*(unsigned char *)s = '\0';
-		s++;
-		n--;
-	}
+	while (n--)
+		*(unsigned char *)s++ = 0;
 }
-
-// int	main(void)
-// {
-// 	char s1[] = "12345";
-// 	char s2[] = "12345";
-// 	ft_bzero(s1, 4);
-// 	bzero(s2, 4);
-// 	printf("compare: %d\n", ft_memcmp(s1, s2, 4));
-// 	return (0);
-// }

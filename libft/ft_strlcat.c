@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:04:22 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:36 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/04 17:44:15 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,21 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dlen;
 	size_t	slen;
+	size_t	dlen;
+	size_t	i;
 
 	dlen = ft_strlen(dst);
 	slen = ft_strlen(src);
-	if (size <= dlen)
-		return (slen + size);
-	i = dlen;
-	j = 0;
-	while (src[j] && i < size - 1)
+	i = 0;
+	while (dlen + i + 1 < size && src[i])
 	{
-		dst[i] = src[j];
+		dst[dlen + i] = src[i];
 		i++;
-		j++;
 	}
-	dst[i] = '\0';
-	return (dlen + slen);
+	dst[dlen + i] = '\0';
+	if (dlen < size)
+		return (dlen + slen);
+	else
+		return (size + slen);
 }
-
-// int	main(void)
-// {
-// 	char dest[20] = "Hello ";
-// 	char src[] = "World";
-// 	printf("mine: %zu\n", ft_strlcat(dest, src, 20));
-// 	printf("dest: %s\n", dest);
-// 	return 0;
-// }

@@ -1,102 +1,83 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_split.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: jdobos <jdobos@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/10 18:39:55 by jdobos        #+#    #+#                 */
-/*   Updated: 2023/10/31 11:50:13 by joni          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 17:38:08 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count(char const *s, char c)
+static int	ft_splitcount(const char *s, const char c)
 {
-	int		t;
-	size_t	words;
+	int	count;
 
-	t = 0;
-	words = 0;
+	count = 0;
 	while (*s)
 	{
-		if (*s != c && t == 0)
-		{
-			words++;
-			t = 1;
-		}
-		else if (*s == c)
-			t = 0;
-		s++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s && *s != c)
+			s++;
 	}
-	return (words);
+	return (count);
 }
 
-static void	*free_er(char **arr, size_t word)
-{
-	while (word--)
-		free(arr[word]);
-	free(arr);
-	return (NULL);
-}
-
-static char	*wordalloc(char const *s, char const c)
+static char	*ft_splitdup(const char *s, const char c)
 {
 	size_t	i;
-	char	*word;
+	char	*ptr;
 
 	i = 0;
 	while (s[i] && s[i] != c)
 		i++;
-	word = malloc((i + 1) * sizeof(char));
-	if (!word)
+	ptr = (char *)malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i] && s[i] != c)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
+	ptr[i] = '\0';
+	while (i--)
+		ptr[i] = s[i];
+	return (ptr);
+}
+
+static void	*ft_freeall(char **array, int row)
+{
+	while (row--)
+		free(array[row]);
+	free(array);
+	return (NULL);
 }
 
 char	**ft_split(const char *s, const char c)
 {
-	char	**arr;
-	size_t	word;
-	size_t	i;
+	char	**array;
+	int		row;
+	int		i;
 
-	arr = (char **)malloc((count(s, c) + 1) * sizeof(char *));
-	if (!arr)
-		return (NULL);
-	word = 0;
+	row = 0;
 	i = 0;
+	array = (char **)malloc((ft_splitcount(s, c) + 1) * sizeof(char *));
+	if (array == NULL)
+		return (NULL);
 	while (s[i])
 	{
 		while (s[i] == c)
 			i++;
 		if (s[i])
 		{
-			arr[word] = wordalloc((char *)(s + i), c);
-			if (!arr[word])
-				return (free_er(arr, word));
-			i += ft_strlen(arr[word]);
-			word++;
+			array[row] = ft_splitdup((char *)(s + i), c);
+			if (array[row] == NULL)
+				return (ft_freeall(array, row));
+			i += ft_strlen(array[row]);
+			row++;
 		}
 	}
-	arr[word] = NULL;
-	return (arr);
+	array[row] = NULL;
+	return (array);
 }
-
-// int	main(void)
-// {
-// 	char **out;
-// 	char s[] = "shahj,hsjahsjah,hs,s";
-// 	out = ft_split(s, ',');
-// 	printf("%s\n", out[0]);
-// 	printf("%s\n", out[1]);
-// 	printf("%s\n", out[2]);
-// 	return 0;
-// }

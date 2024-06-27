@@ -6,10 +6,10 @@
 // Inputs envariable into node 0 of cmd_node
 // and a strdup of getenv() output into node 1
 // RETURN: incremented index
-size_t	parse_env_variable(t_dad *d, size_t i)
+size_t	parse_env_variable(t_shell *d, size_t i)
 {
 	size_t		start;
-	t_cmd_node	**cmd_head;
+	t_list	**cmd_head;
 	char		*extracted_str;
 	char		*getenv_ret_value;
 

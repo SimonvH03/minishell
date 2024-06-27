@@ -35,12 +35,12 @@ t_getnext_func	getnext_string;
 // <
 
 // generic node types
-typedef t_string_node	t_cmd_node;
+typedef t_string_node	t_list;
 
 // special node types
 typedef struct s_significant_argument
 {
-	t_cmd_node	**cmd_head;
+	t_list	**cmd_head;
 	char		**cmd_array;
 	short		token;
 	void		*next;
@@ -50,7 +50,7 @@ t_getnext_func	getnext_sig_arg;
 
 // FUNCTIONS
 t_string_node	*new_node_string(char *data);
-t_sig_arg_node	*new_node_sig_arg(t_cmd_node **cmd_head, char **cmd_array, short token);
+t_sig_arg_node	*new_node_sig_arg(t_list **cmd_head, char **cmd_array, short token);
 void			lstadd_back(void **head, t_getnext_func getnext, void *new_node);
 void			*lstlast(void **head, t_getnext_func getnext);
 

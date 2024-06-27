@@ -3,36 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:04:35 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:55 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/05 18:51:27 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-	int	i;
+	int		len;
 
-	i = ft_strlen(s);
-	while (i >= 0)
+	len = ft_strlen(str);
+	while (len + 1)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i--;
+		if (str[len] == (char)c)
+			return ((char *)(str + len));
+		len--;
 	}
-	if ((char)c == 0)
-		return ((char *)s + i);
 	return (NULL);
 }
-
-// int	main(void)
-// {
-// 	char	s[] = "String String";
-// 	char	c = 'i';
-// 	printf("mine: %s\n", ft_strrchr(s, c));
-// 	printf("original: %s\n", strrchr(s, c));
-// 	return (0);
-// }

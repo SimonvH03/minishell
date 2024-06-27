@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 21:20:30 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/26 21:58:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:42:15 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*getnext_string(void *node)
 // <
 
 t_sig_arg_node	*
-	new_node_sig_arg(t_cmd_node **cmd_head, char **cmd_array, short token)
+	new_node_sig_arg(t_list **cmd_head, char **cmd_array, short token)
 {
 	t_sig_arg_node	*new_node;
 

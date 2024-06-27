@@ -15,29 +15,34 @@ void	TEST_printline(char *line);
 short	sig = 0;
 
 // Initializes struct of all structs: t_dad.
-void	init_dad(t_dad *d, char **envp)
+void	init_shell(t_shell *shell, int argc, char **argv, char **envp)
 {
-	d->sig_arg_head = NULL;
-	d->prev_line = NULL;
-	d->line = NULL;
-	d->env_head = create_env_list(envp);
+	(void)argc;
+	(void)argv;
+	shell->sig_arg_head = NULL;
+	shell->history = NULL;
+	shell->line = NULL;
+	shell->envp = create_envp(envp);
+	if (shell->envp == NULL)
+		exit_clean(shell, errno, NULL);
+	(void)envp;
 }
 
 // Adds current line to history if:
 // line_len > 0 && line != previous line.
-// Lastly: strdups line to prev_line.
-void	line_history_management(t_dad *d)
+// Lastly: strdups line to history.
+void	line_history_management(t_shell *shell)
 {
-	const size_t	line_len = ft_strlen(d->line);
+	const size_t	len = ft_strlen(shell->line);
 
-	if (line_len && \
-	(!d->prev_line || ft_strncmp(d->line, d->prev_line, line_len + 1)))
+	if (len && \
+	(!shell->history || ft_strncmp(shell->line, shell->history, len + 1)))
 	{
-		add_history(d->line);
-		free(d->prev_line);
-		d->prev_line = ft_strdup(d->line);
-		if (!d->prev_line)
-			exit_clean(d, errno, NULL);
+		add_history(shell->line);
+		free(shell->history);
+		shell->history = ft_strdup(shell->line);
+		if (!shell->history)
+			exit_clean(shell, errno, NULL);
 	}
 }
 
@@ -46,28 +51,25 @@ void	line_history_management(t_dad *d)
 // "print [this will be printed]"
 int	main(int argc, char **argv, char **envp)
 {
-	t_dad	d;
+	t_shell	shell;
 
-	init_dad(&d, envp);
+	init_shell(&shell, argc, argv, envp);
 	while (true)
 	{
 		rl_on_new_line();
-		d.line = readline(C_YELLOW "mini" C_RED " > " C_RESET);
-		if (!d.line)
-			break ;
-		if (syntax_check(d.line))
-		{
-			TEST_printline(d.line);// TEST
-			line_history_management(&d);
-			parsing_distributor(&d);
-		}
-		else
+		shell.line = readline(C_YELLOW "mini" C_RED " > " C_RESET);
+		if (shell.line == NULL)
+			exit_clean(&shell, errno, NULL);
+		if (syntax_check(shell.line) == FAILURE)
 			printf("syntax error\n");
-		free(d.line);
+		TEST_printline(shell.line);
+		line_history_management(&shell);
+		parsing_distributor(&shell);
+		free(shell.line);
 	}
-	free(d.prev_line);
+	free(shell.history);
 	rl_clear_history();
-	return (0);
+	return (SUCCESS);
 }
 
 // TEST FUNCTIONS:

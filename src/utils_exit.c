@@ -1,21 +1,22 @@
 #include "../minish_param.h"
 
-// Frees main stings, linkedlists and exits.
-void	exit_clean(t_dad *d, int num, char *message)
+// attempts to free everything known to shell, then exits
+void	exit_clean(t_shell *shell, int num, char *message)
 {
-	//core cleanup
-	free(d->line);
-	free(d->prev_line);
+	free_arglist(shell->sig_arg_head);
+	ft_free_null(shell->line);
+	ft_free_ptr_array(shell->history);
+	ft_free_ptr_array(shell->envp);
 	rl_clear_history();
 	errno = num;
-	if (num != EXIT_SUCCESS)
+	if (num != SUCCESS)
 		perror(message);
 	exit(num);
 }
 
 // (EXPERIMENTAL)
 // Exits the program with exit_clean() after freeing variable amount of pointers
-// void	exit_va_free(t_dad *d, int num, char *message, int amount, ...)
+// void	exit_va_free(t_shell *shell, int num, char *message, int amount, ...)
 // {
 // 	va_list	ptrs_to_free;
 // 	int		i;
@@ -28,5 +29,5 @@ void	exit_clean(t_dad *d, int num, char *message)
 // 		++i;
 // 	}
 // 	va_end(ptrs_to_free);
-// 	exit_clean(d, num, message);
+// 	exit_clean(shell, num, message);
 // }

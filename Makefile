@@ -22,8 +22,8 @@ LIBFT	=	$(LFTDIR)/libft.a
 
 SRCDIR	=	./src
 SRC		=	$(SRCDIR)/main.c \
-			$(SRCDIR)/env_init.c \
-			$(SRCDIR)/env_parse.c \
+			$(SRCDIR)/envp_init.c \
+			$(SRCDIR)/envp_parse.c \
 			$(SRCDIR)/parsing_distributor.c \
 			$(SRCDIR)/tokenizer.c \
 			$(SRCDIR)/utils_cmd_list.c \

@@ -3,38 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 17:49:43 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:30 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/19 17:38:19 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// void	ft_touppermod(unsigned int i, char *c)
-// {
-// 	if (*c >= 97 && *c <= 122)
-// 		*c = *c - 32;
-// }
-
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		f(i, &s[i]);
+		f(i, (s + i));
 		i++;
 	}
 	return ;
 }
-
-// int	main(void)
-// {
-// 	char s[] = "Heeee6eellloIo";
-// 	ft_striteri(s, ft_touppermod);
-// 	printf("%s\n", s);
-// 	return (0);
-// }

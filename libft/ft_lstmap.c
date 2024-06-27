@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 11:54:46 by joni              #+#    #+#             */
-/*   Updated: 2023/10/30 18:01:12 by jdobos           ###   ########.fr       */
+/*   Created: 2023/11/02 15:31:07 by simon             #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*new;
-	void	*temp_cont;
+	t_list	*first;
+	t_list	*newnode;
+	void	*tmpcont;
 
-	if (lst == NULL || f == NULL || del == NULL)
+	if (lst == NULL || del == NULL || f == NULL)
 		return (NULL);
-	head = NULL;
-	while (lst != NULL)
+	first = NULL;
+	while (lst)
 	{
-		temp_cont = f(lst->content);
-		new = ft_lstnew(temp_cont);
-		if (new == NULL)
+		tmpcont = f(lst->content);
+		newnode = ft_lstnew(tmpcont);
+		if (newnode == NULL)
 		{
-			del(temp_cont);
-			ft_lstclear(&head, del);
+			del(tmpcont);
+			ft_lstclear(&first, del);
 			return (NULL);
 		}
 		lst = lst->next;
-		ft_lstadd_back(&head, new);
+		ft_lstadd_back(&first, newnode);
 	}
-	return (head);
+	return (first);
 }

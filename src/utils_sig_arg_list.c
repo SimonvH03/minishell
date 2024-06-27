@@ -2,7 +2,7 @@
 
 t_sig_arg	*
 	create_arg_node(
-		t_cmd_node	**cmd_head,
+		t_list	**cmd_head,
 		char		**cmd_arr,
 		short		token)
 {
@@ -22,7 +22,7 @@ t_sig_arg	*
 // so no head?
 t_sig_arg	**
 	new_node_back_arglist(
-		t_cmd_node	**cmd_head,
+		t_list	**cmd_head,
 		char		**cmd_arr,
 		short		token,
 		t_sig_arg	**head)
@@ -66,7 +66,7 @@ void	free_arglist(t_sig_arg **head)
 	while (tmp != NULL)
 	{
 		free_cmdlist(tmp->cmd_head);
-		free_double_arr(tmp->cmd_array);
+		ft_free_ptr_array(tmp->cmd_array);
 		tmp_tmp = tmp->next;
 		free(tmp);
 		tmp = tmp_tmp;

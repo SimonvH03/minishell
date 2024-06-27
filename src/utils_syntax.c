@@ -18,6 +18,6 @@ bool	syntax_check(const char *line)
 		++i;
 	}
 	if (s_quote_count % 2 != 0 || d_quote_count % 2 != 0)
-		return (NEUTRAL);
+		return (FAILURE);
 	return (SUCCESS);
 }

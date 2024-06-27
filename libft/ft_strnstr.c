@@ -3,41 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:04:32 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/23 19:28:46 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/05 12:13:49 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *hay, const char *needle, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
-	size_t		nl;
-	size_t		i;
+	size_t	i;
 
-	if (!(*needle))
-		return ((char *)hay);
-	nl = ft_strlen(needle);
-	while (*hay && n-- >= nl)
+	while (*haystack && n)
 	{
 		i = 0;
-		while (needle[i] && hay[i] == needle[i])
+		while (haystack[i] == needle[i] && needle[i] && n - i)
 			i++;
 		if (needle[i] == '\0')
-			return ((char *)hay);
-		hay++;
+			return ((char *)haystack);
+		haystack++;
+		n--;
 	}
+	if (*needle == '\0')
+		return ((char *)haystack);
 	return (NULL);
 }
-
-// int main(void)
-// {
-// 	char haystack[30] = "aaabcabcd";
-// 	char needle[10] = "aabc";
-// 	char * empty = (char*)"";
-// 	printf("\n%d\n", ft_strnstr(haystack, "abcd", 9) == haystack + 5);
-// 	printf("\n%s\n", ft_strnstr(empty, "", 0));
-// 	return (0);
-// }

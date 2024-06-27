@@ -3,60 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 12:32:47 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:41:04 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/19 17:39:03 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count(char const *s, unsigned int start, size_t l)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	size_t		i;
+	size_t		slen;
+	char		*sub;
 
 	i = 0;
-	while (s[start] && l--)
-	{
-		start++;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*r;
-	size_t	i;
-	size_t	l;
-
-	if (start >= ft_strlen(s))
-	{
-		r = (char *) malloc(1 * sizeof(char));
-		if (!(r))
-			return (NULL);
-		*r = '\0';
-		return (r);
-	}
-	l = count(s, start, len);
-	r = (char *) malloc((l + 1) * sizeof(char));
-	if (!(r))
+	slen = ft_strlen(s);
+	if (start > slen)
+		return (ft_strdup(""));
+	if (start + len > slen)
+		len = slen - start;
+	sub = (char *)malloc(len + 1);
+	if (sub == NULL)
 		return (NULL);
-	i = 0;
-	while (len-- && s[start])
+	while (s[i] && i < len)
 	{
-		r[i] = s[start];
+		sub[i] = s[start + i];
 		i++;
-		start++;
 	}
-	r[i] = '\0';
-	return (r);
+	sub[i] = '\0';
+	return (sub);
 }
-
-// int	main(void)
-// {
-// 	char s[] = "hello there";
-// 	printf("%s\n", ft_substr(s, 9, 3));
-// 	return (0);
-// }

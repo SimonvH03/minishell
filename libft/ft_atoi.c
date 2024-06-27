@@ -3,42 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:03:40 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/23 20:14:33 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/03 16:55:23 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *c)
 {
-	int	v;
-	int	c;
+	int	sign;
+	int	num;
 
-	v = 0;
-	c = 1;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
-	if (*str == '-' || *str == '+')
+	sign = 1;
+	num = 0;
+	while (*c == ' ' || (*c >= 9 && *c <= 13))
+		c++;
+	if (*c == '-' || *c == '+')
 	{
-		if (*str == '-')
-			c = -1;
-		str++;
+		if (*c == '-')
+			sign = -sign;
+		c++;
 	}
-	while (*str >= 48 && *str <= 57)
-	{
-		v = v * 10 + (*str - 48);
-		str++;
-	}
-	return (c * v);
+	while (*c >= '0' && *c <= '9')
+		num = (num * 10) + (*c++ - '0');
+	return (sign * num);
 }
-
-// int	main(void)
-// {
-// 	char s[] = "12345";
-// 	printf("libft: %d\n", ft_atoi(s));
-// 	printf("original: %d\n", atoi(s));
-// 	return (0);
-// }

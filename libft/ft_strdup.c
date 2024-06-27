@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:04:19 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:26 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/12 15:39:42 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 char	*ft_strdup(const char *s)
 {
-	char	*ptr;
 	size_t	i;
+	char	*ptr;
 
 	i = 0;
-	ptr = (char *) malloc ((ft_strlen(s) + 1) * sizeof(char));
-	if (!(ptr))
+	while (s[i])
+		i++;
+	ptr = malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
 		return (NULL);
+	i = 0;
 	while (s[i])
 	{
 		ptr[i] = s[i];
@@ -29,17 +32,3 @@ char	*ft_strdup(const char *s)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-// int	main(void)
-// {
-// 	char	*out1;
-// 	char	*out2;
-// 	char	in[] = "String";
-// 	out1 = ft_strdup(in);
-// 	out2 = strdup(in);
-// 	printf("Mine: %s\n", out1);
-// 	printf("Mine: %s\n", out2);
-// 	free(out1);
-// 	free(out2);
-// 	return (0);
-// }

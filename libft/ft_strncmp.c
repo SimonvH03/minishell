@@ -3,36 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 18:04:30 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:49 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/05 12:19:24 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *a, const char *b, size_t n)
 {
-	size_t			i;
-	unsigned char	*a;
-	unsigned char	*b;
+	const unsigned char	*uca = (unsigned char *)a;
+	const unsigned char	*ucb = (unsigned char *)b;
 
-	i = 0;
-	a = (unsigned char *)s1;
-	b = (unsigned char *)s2;
-	if (n == 0)
-		return (0);
-	while (a[i] == b[i] && a[i] && b[i] && i < n - 1)
-		i++;
-	return (a[i] - b[i]);
+	while (n-- && (*uca || *ucb))
+		if (*uca++ != *ucb++)
+			return (*(uca - 1) - *(ucb - 1));
+	return (0);
 }
-
-// int	main(void)
-// {
-// 	char s1[] = "1234";
-// 	char s2[] = "\200";
-// 	printf("Libft: %d\n", ft_strncmp(s1, s2, 3));
-// 	printf("Original: %d\n", strncmp(s1, s2, 3));
-// 	return 0;
-// }

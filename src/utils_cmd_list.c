@@ -1,10 +1,10 @@
 #include "../minish_param.h"
 
-t_cmd_node	*create_cmd_node(char *content)
+t_list	*create_cmd_node(char *content)
 {
-	t_cmd_node	*new_cmd_node;
+	t_list	*new_cmd_node;
 
-	new_cmd_node = (t_cmd_node *)malloc(sizeof(t_cmd_node));
+	new_cmd_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_cmd_node)
 		return (NULL);
 	new_cmd_node->content = content;
@@ -13,10 +13,10 @@ t_cmd_node	*create_cmd_node(char *content)
 }
 
 // RETURN: head = success, NULL = failure (whole list is freed)
-t_cmd_node	**new_node_back_cmdlist(t_cmd_node **head, char *content)
+t_list	**new_node_back_cmdlist(t_list **head, char *content)
 {
-	t_cmd_node	*new_cmd_node;
-	t_cmd_node	*tmp;
+	t_list	*new_cmd_node;
+	t_list	*tmp;
 
 	if (!head)
 		return (NULL);
@@ -31,9 +31,9 @@ t_cmd_node	**new_node_back_cmdlist(t_cmd_node **head, char *content)
 	return (tmp->next = new_cmd_node, head);
 }
 
-t_cmd_node	*cmdlist_last_node(t_cmd_node **head)
+t_list	*cmdlist_last_node(t_list **head)
 {
-	t_cmd_node	*tmp;
+	t_list	*tmp;
 
 	if (!head || !(*head))
 		return (NULL);
@@ -43,10 +43,10 @@ t_cmd_node	*cmdlist_last_node(t_cmd_node **head)
 	return (tmp);
 }
 
-void	free_cmdlist(t_cmd_node **head)
+void	free_cmdlist(t_list **head)
 {
-	t_cmd_node	*tmp;
-	t_cmd_node	*tmp_tmp;
+	t_list	*tmp;
+	t_list	*tmp_tmp;
 
 	if (!head || !(*head))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:43:12 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/26 22:10:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:42:15 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	t_cmd_node		**cmd_head;
+	t_list		**cmd_head;
 	t_sig_arg_node	**sig_head;
 
 	// set up two command lists, and add them to the significant argument list

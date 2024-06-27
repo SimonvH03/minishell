@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdobos <jdobos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 18:24:12 by jdobos            #+#    #+#             */
-/*   Updated: 2023/10/24 11:40:14 by jdobos           ###   ########.fr       */
+/*   Created: 2023/10/19 15:02:32 by simon             #+#    #+#             */
+/*   Updated: 2024/03/19 18:23:47 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	char	c;
 
-	if (n == -2147483648)
+	if (n == INT_MIN)
 	{
-		write(fd, "-2147483648", 11);
+		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
 	if (n < 0)
 	{
-		write(fd, "-", 1);
-		n = n * -1;
+		c = '-';
+		write(fd, &c, 1);
+		n = -n;
 	}
 	if (n > 9)
-		ft_putnbr_fd(n / 10, fd);
-	c = n % 10 + 48;
-	write(fd, &c, 1);
+	{
+		ft_putnbr_fd((n / 10), fd);
+		n = n % 10;
+	}
+	if (n <= 9)
+	{
+		c = n + 48;
+		write(fd, &c, 1);
+	}
 }
-
-// int	main(void)
-// {
-// 	ft_putnbr_fd(-2147483647, 1);
-// 	printf("\n");
-// 	return (0);
-// }
