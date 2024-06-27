@@ -1,5 +1,5 @@
-#ifndef MINISH_DEF_H
-# define MINISH_DEF_H
+#ifndef MINI_DEF_H
+# define MINI_DEF_H
 
 // Colors
 

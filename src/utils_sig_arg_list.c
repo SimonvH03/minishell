@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 t_sig_arg	*
 	create_arg_node(

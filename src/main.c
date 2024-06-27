@@ -8,7 +8,7 @@ MINISHELL:
 	- Sig management
 */
 
-#include "../minish_param.h"
+#include "../minishell.h"
 
 void	TEST_printline(char *line);
 

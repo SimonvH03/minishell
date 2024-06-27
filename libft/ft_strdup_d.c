@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*   ft_strdup_d.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:50:39 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/27 21:13:32 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/06/27 21:11:17 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/06/27 21:17:11 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_arrdup(char **arr)
+char	*ft_strdup_d(const char *str, const char delim)
 {
-	char	**dup;
-	int		i;
+	size_t	i;
+	char	*ptr;
 
 	i = 0;
-	while (arr[i])
-		++i;
-	dup = (char **)malloc((i + 1) * sizeof(char *));
-	if (dup == NULL)
+	while (str[i] && str[i] != delim)
+		i++;
+	ptr = malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
 		return (NULL);
-	dup[i] = NULL;
-	while (i--)
+	i = 0;
+	while (str[i] && str[i] != delim)
 	{
-		dup[i] = ft_strdup(arr[i]);
-		if (!dup[i])
-			return (ft_free_ptr_array(dup), NULL);
+		ptr[i] = str[i];
+		i++;
 	}
-	return (dup);
+	ptr[i] = '\0';
+	return (ptr);
 }

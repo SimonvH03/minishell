@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 // NOT CORRECT!
 
@@ -9,7 +9,7 @@
 size_t	parse_env_variable(t_shell *d, size_t i)
 {
 	size_t		start;
-	t_list	**cmd_head;
+	t_list		**cmd_head;
 	char		*extracted_str;
 	char		*getenv_ret_value;
 
@@ -23,7 +23,7 @@ size_t	parse_env_variable(t_shell *d, size_t i)
 		exit_clean(d, errno, NULL);
 	getenv_ret_value = getenv(extracted_str);
 	// not good!
-	if (!new_node_back_arglist(NULL, NULL, T_ENV_VAR, d->sig_arg_head) || \
+	if (!new_node_back_arglist(NULL, NULL, T_NO_ACTION, d->sig_arg_head) || \
 	!new_node_back_cmdlist(cmd_head, extracted_str) || \
 	!new_node_back_cmdlist(cmd_head, getenv_ret_value))
 	{

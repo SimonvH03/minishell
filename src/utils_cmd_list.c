@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 t_list	*create_cmd_node(char *content)
 {

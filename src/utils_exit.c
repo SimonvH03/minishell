@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 // attempts to free everything known to shell, then exits
 void	exit_clean(t_shell *shell, int num, char *message)

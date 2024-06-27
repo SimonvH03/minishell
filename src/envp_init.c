@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 // Creates linked list of env:
 // ->key = "$PATH"

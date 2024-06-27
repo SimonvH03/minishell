@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:50:39 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/27 21:13:32 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/06/27 21:31:21 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/06/27 21:35:34 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_arrdup(char **arr)
+char	**ft_realloc_array(char **array, size_t size)
 {
-	char	**dup;
-	int		i;
+	char	**new;
 
-	i = 0;
-	while (arr[i])
-		++i;
-	dup = (char **)malloc((i + 1) * sizeof(char *));
-	if (dup == NULL)
+	new = malloc(sizeof(char *) * (size + 1));
+	if (new == NULL)
 		return (NULL);
-	dup[i] = NULL;
-	while (i--)
+	new[size] = NULL;
+	while (size--)
 	{
-		dup[i] = ft_strdup(arr[i]);
-		if (!dup[i])
-			return (ft_free_ptr_array(dup), NULL);
+		new[size] = array[size];
 	}
-	return (dup);
+	free(array);
+	return (new);
 }

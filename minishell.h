@@ -1,7 +1,7 @@
-#ifndef MINISH_PARAM_H
-# define MINISH_PARAM_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 # include "libft/libft.h"
-# include "minish_def.h"
+# include "mini_def.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
@@ -65,6 +65,5 @@ void	exit_clean(t_shell *d, int num, char *message);
 void	free_setnull(void **ptr);
 void	free_if(void *ptr);
 void	free_va(int amount, ...);
-void	ft_free_ptr_array(char **arr);
 
 #endif

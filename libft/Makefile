@@ -3,6 +3,7 @@ NAME	=	libft.a
 CFLAGS	=	-Wall -Wextra -Werror
 
 SRC		=	ft_abs.c \
+			ft_arrdup.c \
 			ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
@@ -42,6 +43,7 @@ SRC		=	ft_abs.c \
 			ft_putpointer.c \
 			ft_putstr_fd.c \
 			ft_putstr.c \
+			ft_realloc_array.c \
 			ft_sign.c \
 			ft_split.c \
 			ft_str_toupper.c \
@@ -49,6 +51,7 @@ SRC		=	ft_abs.c \
 			ft_strchr.c \
 			ft_strchr_null.c \
 			ft_strdup.c \
+			ft_strdup_d.c \
 			ft_striteri.c \
 			ft_strjoin_d.c \
 			ft_strjoin.c \

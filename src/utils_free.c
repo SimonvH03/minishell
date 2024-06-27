@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 // Frees *ptr if != NULL, then sets it to NULL
 void	free_setnull(void **ptr)

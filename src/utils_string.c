@@ -1,4 +1,4 @@
-#include "../minish_param.h"
+#include "../minishell.h"
 
 // *str > string to read from
 // start > starting index for reading from str
