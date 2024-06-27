@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_export.c                                      :+:      :+:    :+:   */
+/*   envp_export_unset.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:02:04 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/27 21:41:48 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:58:41 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	builtin_export(
 	int		keylen;
 	int		i;
 
-	key = strdup_d(envar, '=');
+	key = ft_strdup_d(envar, '=');
 	if (key == NULL)
 		exit_clean(shell, errno, NULL);
 	keylen = ft_str_toupper(key); // maybe swap with strlen, do syntax check elsewhere
@@ -59,4 +59,29 @@ void	builtin_export(
 		export_new_key(shell, envar);
 	else
 		export_update_key(shell, envar, i);
+}
+
+void	builtin_unset(
+	t_shell *shell, char *envar)
+{
+	char	*key;
+	int		keylen;
+	int		i;
+
+	key = ft_strdup_d(envar, '=');
+	if (key == NULL)
+		exit_clean(shell, errno, NULL);
+	keylen = ft_str_toupper(key); // maybe swap with strlen, do syntax check elsewhere
+	i = 0;
+	while (shell->envp[i] && strncmp(shell->envp[i], key, keylen))
+		i++;
+	if (shell->envp[i] == NULL)
+		return ;
+	free(shell->envp[i]);
+	while (shell->envp[i + 1] != NULL)
+	{
+		shell->envp[i] = shell->envp[i + 1];
+		i++;
+	}
+	shell->envp[i] = NULL;
 }

@@ -1,6 +1,6 @@
 NAME	=	minishell
 
-CC		=	cc -g -fsanitize=address
+CC		=	cc -g
 
 # CFLAGS=		-Wall -Wextra -Werror
 
@@ -22,12 +22,11 @@ LIBFT	=	$(LFTDIR)/libft.a
 
 SRCDIR	=	./src
 SRC		=	$(SRCDIR)/main.c \
+			$(SRCDIR)/envp_export_unset.c \
 			$(SRCDIR)/envp_init.c \
-			$(SRCDIR)/envp_parse.c \
 			$(SRCDIR)/parsing_distributor.c \
 			$(SRCDIR)/tokenizer.c \
 			$(SRCDIR)/utils_cmd_list.c \
-			$(SRCDIR)/utils_env_list.c \
 			$(SRCDIR)/utils_exit.c \
 			$(SRCDIR)/utils_free.c \
 			$(SRCDIR)/utils_sig_arg_list.c \

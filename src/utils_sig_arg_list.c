@@ -66,7 +66,7 @@ void	free_arglist(t_sig_arg **head)
 	while (tmp != NULL)
 	{
 		free_cmdlist(tmp->cmd_head);
-		ft_free_ptr_array(tmp->cmd_array);
+		ft_free_array(tmp->cmd_array);
 		tmp_tmp = tmp->next;
 		free(tmp);
 		tmp = tmp_tmp;

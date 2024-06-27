@@ -31,7 +31,7 @@ void	free_va(int amount, ...)
 	va_end(ptrs_to_free);
 }
 
-void	ft_free_ptr_array(char **arr)
+void	ft_free_array(char **arr)
 {
 	int	i;
 

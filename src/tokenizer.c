@@ -11,6 +11,6 @@ void	tokenizer(t_shell *d)
 	{
 		if (d->line[i] == ' ')
 			++i;
-		i = parse_env_variable(d, i);
+		// i = parse_env_variable(d, i);
 	}
 }

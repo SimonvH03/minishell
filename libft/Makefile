@@ -9,7 +9,7 @@ SRC		=	ft_abs.c \
 			ft_calloc.c \
 			ft_cpy.c \
 			ft_free_null.c \
-			ft_free_ptr_array.c \
+			ft_free_array.c \
 			ft_intlen_base.c \
 			ft_intlen.c \
 			ft_isalnum.c \
@@ -60,6 +60,7 @@ SRC		=	ft_abs.c \
 			ft_strlen.c \
 			ft_strlen_null.c \
 			ft_strmapi.c \
+			ft_strnarr.c \
 			ft_strncmp.c \
 			ft_strnstr.c \
 			ft_strrchr.c \

@@ -4,9 +4,9 @@
 void	exit_clean(t_shell *shell, int num, char *message)
 {
 	free_arglist(shell->sig_arg_head);
-	ft_free_null(shell->line);
-	ft_free_ptr_array(shell->history);
-	ft_free_ptr_array(shell->envp);
+	ft_free_null(&shell->line);
+	ft_free_array(shell->history);
+	ft_free_array(shell->envp);
 	rl_clear_history();
 	errno = num;
 	if (num != SUCCESS)

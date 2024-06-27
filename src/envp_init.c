@@ -17,7 +17,7 @@ char	**create_envp(char **envp)
 	{
 		array[i] = strdup(envp[i]);
 		if (array[i] == NULL)
-			return (ft_free_ptr_array(array), NULL);
+			return (ft_free_array(array), NULL);
 	}
 	return (array);
 }

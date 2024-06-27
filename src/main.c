@@ -31,20 +31,20 @@ void	init_shell(t_shell *shell, int argc, char **argv, char **envp)
 // Adds current line to history if:
 // line_len > 0 && line != previous line.
 // Lastly: strdups line to history.
-void	line_history_management(t_shell *shell)
-{
-	const size_t	len = ft_strlen(shell->line);
+// void	line_history_management(t_shell *shell)
+// {
+// 	const size_t	len = ft_strlen(shell->line);
 
-	if (len && \
-	(!shell->history || ft_strncmp(shell->line, shell->history, len + 1)))
-	{
-		add_history(shell->line);
-		free(shell->history);
-		shell->history = ft_strdup(shell->line);
-		if (!shell->history)
-			exit_clean(shell, errno, NULL);
-	}
-}
+// 	if (len && \
+// 	(!shell->history || ft_strncmp(shell->line, shell->history, len + 1)))
+// 	{
+// 		add_history(shell->line);
+// 		free(shell->history);
+// 		shell->history = ft_strdup(shell->line);
+// 		if (!shell->history)
+// 			exit_clean(shell, errno, NULL);
+// 	}
+// }
 
 // Contains the readline() loop.
 // FOR TESTING: to print the input of readline() input:
@@ -63,7 +63,7 @@ int	main(int argc, char **argv, char **envp)
 		if (syntax_check(shell.line) == FAILURE)
 			printf("syntax error\n");
 		TEST_printline(shell.line);
-		line_history_management(&shell);
+		// line_history_management(&shell);
 		parsing_distributor(&shell);
 		free(shell.line);
 	}

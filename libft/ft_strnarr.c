@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*   ft_strnarr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 20:50:39 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/06/27 22:00:07 by svan-hoo         ###   ########.fr       */
+/*   Created: 2024/06/27 22:03:34 by svan-hoo          #+#    #+#             */
+/*   Updated: 2024/06/27 22:10:43 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_arrdup(char **arr)
+// find a needle in an array of haystacks
+char	*ft_strnarr(char **haystack, char *needle, size_t n)
 {
-	char	**dup;
-	int		i;
+	const size_t	needle_len = ft_strlen(needle);
 
-	i = 0;
-	while (arr[i])
-		++i;
-	dup = (char **)malloc((i + 1) * sizeof(char *));
-	if (dup == NULL)
-		return (NULL);
-	dup[i] = NULL;
-	while (i--)
+	while (*haystack && n)
 	{
-		dup[i] = ft_strdup(arr[i]);
-		if (!dup[i])
-			return (ft_free_array(dup), NULL);
+		if (ft_strnstr(*haystack, needle, needle_len))
+			return (*haystack);
 	}
-	return (dup);
+	return (NULL);
 }
