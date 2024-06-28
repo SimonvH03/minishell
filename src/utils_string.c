@@ -20,3 +20,4 @@ char	*strdup_index(char *str, size_t	start, size_t end)
 	ret[i] = '\0';
 	return (ret);
 }
+// ja maar dit is gewoon substr van libft

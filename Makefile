@@ -26,7 +26,6 @@ SRC		=	$(SRCDIR)/main.c \
 			$(SRCDIR)/envp_init.c \
 			$(SRCDIR)/parsing_distributor.c \
 			$(SRCDIR)/tokenizer.c \
-			$(SRCDIR)/utils_cmd_list.c \
 			$(SRCDIR)/utils_exit.c \
 			$(SRCDIR)/utils_free.c \
 			$(SRCDIR)/utils_sig_arg_list.c \

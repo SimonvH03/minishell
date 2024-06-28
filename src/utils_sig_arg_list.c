@@ -1,74 +1,57 @@
 #include "../minishell.h"
 
-t_sig_arg	*
-	create_arg_node(
-		t_list	**cmd_head,
-		char		**cmd_arr,
-		short		token)
+void	sig_arg_delone(t_sig_arg *node)
 {
-	t_sig_arg	*new_arg_node;
-
-	new_arg_node = (t_sig_arg *)malloc(sizeof(t_sig_arg));
-	if (!new_arg_node)
-		return (NULL);
-	new_arg_node->cmd_array = cmd_arr;
-	new_arg_node->cmd_head = cmd_head;
-	new_arg_node->token = token;
-	new_arg_node->next = NULL;
-	return (new_arg_node);
-}
-
-// RETURN: head = success, NULL = failure (whole list is freed)
-// so no head?
-t_sig_arg	**
-	new_node_back_arglist(
-		t_list	**cmd_head,
-		char		**cmd_arr,
-		short		token,
-		t_sig_arg	**head)
-{
-	t_sig_arg	*new_arg_node;
-	t_sig_arg	*tmp;
-
-	if (!head)
-	return (NULL);
-	new_arg_node = create_arg_node(cmd_head, cmd_arr, token);
-	if (!new_arg_node)
-		return (free_arglist(head), NULL);
-	if (!(*head))
-		return (head = &new_arg_node, head);
-	tmp = *head;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp->next = new_arg_node, head);
-}
-
-t_sig_arg	*arglist_last_node(t_sig_arg **head)
-{
-	t_sig_arg	*tmp;
-
-	if (!head || !(*head))
-		return (NULL);
-	tmp = *head;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-void	free_arglist(t_sig_arg **head)
-{
-	t_sig_arg	*tmp;
-	t_sig_arg	*tmp_tmp;
-
-	if (!head || !(*head))
+	if (node == NULL)
 		return ;
-	tmp = *head;
-	while (tmp != NULL)
+	ft_lstclear(node->cmd_head, free);
+	ft_free_array(node->cmd_array);
+	free(node);
+}
+
+void	sig_arg_clear(t_sig_arg **node)
+{
+	t_sig_arg	*temp;
+
+	if (node == NULL)
+		return ;
+	while (*node != NULL)
 	{
-		free_cmdlist(tmp->cmd_head);
-		ft_free_array(tmp->cmd_array);
-		tmp_tmp = tmp->next;
-		free(tmp);
-		tmp = tmp_tmp;
+		temp = (*node)->next;
+		ft_nodedelone(*node);
+		*node = temp;
 	}
+}
+
+t_sig_arg	*sig_arg_new(
+		t_list **cmd_head, char **cmd_array, short token)
+{
+	t_sig_arg	*new;
+
+	new = (t_sig_arg *)malloc(sizeof(t_sig_arg));
+	if (new == NULL)
+		return (NULL);
+	new->cmd_head = cmd_head;
+	new->cmd_array = cmd_array;
+	new->token = token;
+	new->next = NULL;
+	return (new);
+}
+
+t_sig_arg	*sig_arg_last(t_sig_arg *node)
+{
+	if (node != NULL)
+		while (node->next != NULL)
+			node = node->next;
+	return (node);
+}
+
+void	sig_arg_add_back(t_sig_arg **node, t_sig_arg *new)
+{
+	if (node == NULL)
+		return ;
+	else if (*node != NULL)
+		sig_arg_last(*node)->next = new;
+	else
+		*node = new;
 }

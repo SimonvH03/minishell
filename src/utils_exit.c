@@ -14,7 +14,7 @@ void	exit_clean(t_shell *shell, int num, char *message)
 	exit(num);
 }
 
-// (EXPERIMENTAL)
+// (EXPERIMENTAL) coooool, maar call die andere variablefree apart plus je exitclean
 // Exits the program with exit_clean() after freeing variable amount of pointers
 // void	exit_va_free(t_shell *shell, int num, char *message, int amount, ...)
 // {

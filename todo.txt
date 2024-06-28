@@ -1,0 +1,7 @@
+parsing_distributor.c:
+	parse / tokenize (interpret everything from line)
+	syntax check 2
+	'execution plan' / 'work tree'
+	pass plan to executor
+
+replace cmd_list specific stuff with libft functions
